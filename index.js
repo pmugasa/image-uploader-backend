@@ -51,6 +51,7 @@ app.post("/images", upload.single("file"), async (req, res, next) => {
       filename: file.filename,
       path: file.path,
     });
+    console.log(image);
     await image.save();
     res.status(201).json(image);
   } catch (err) {
@@ -76,7 +77,7 @@ app.get("/images/:id", async (req, res) => {
   }
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
