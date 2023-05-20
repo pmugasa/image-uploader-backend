@@ -63,7 +63,7 @@ app.get("/images/:id", async (req, res) => {
     if (!image) {
       return res.status(404).json({ message: "Image not found" });
     } else {
-      return res.status(200).json(image);
+      return res.status(200).send(image);
     }
   } catch (error) {
     console.error(error);
