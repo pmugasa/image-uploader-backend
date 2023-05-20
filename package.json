@@ -1,0 +1,31 @@
+{
+  "name": "image-uploader-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmugasa/image-uploader-backend.git"
+  },
+  "author": "Pete Mugasa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pmugasa/image-uploader-backend/issues"
+  },
+  "homepage": "https://github.com/pmugasa/image-uploader-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "file-system": "^2.2.2",
+    "mime-types": "^2.1.35",
+    "mongoose": "^7.2.0",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
