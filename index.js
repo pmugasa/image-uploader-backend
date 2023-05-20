@@ -21,7 +21,9 @@ mongoose
   });
 app.use(cors());
 app.use(express.json());
+app.use(express.static("dist"));
 app.use("/uploads", express.static("uploads"));
+
 //app.use(express.urlencoded({ extended: true }));
 
 const storage = multer.diskStorage({
