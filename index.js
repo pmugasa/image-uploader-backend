@@ -2,11 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
-//const upload = multer({ dest: "uploads/" });
-
 const cors = require("cors");
 const app = express();
-const fs = require("file-system");
 const Image = require("./models/image");
 
 //mongodb config
@@ -24,8 +21,7 @@ app.use(express.json());
 app.use(express.static("dist"));
 app.use("/uploads", express.static("uploads"));
 
-//app.use(express.urlencoded({ extended: true }));
-
+//multer config
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads/");
@@ -39,9 +35,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 //ROUTES
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
 
 //uploading image
 app.post("/images", upload.single("file"), async (req, res, next) => {
@@ -53,7 +46,7 @@ app.post("/images", upload.single("file"), async (req, res, next) => {
       filename: file.filename,
       path: file.path,
     });
-    console.log(image);
+
     await image.save();
     res.status(201).json(image);
   } catch (err) {
@@ -70,8 +63,7 @@ app.get("/images/:id", async (req, res) => {
     if (!image) {
       return res.status(404).json({ message: "Image not found" });
     } else {
-      console.log(image);
-      return res.contentType("image.jpeg").send(image.buffer);
+      return res.status(200).json(image);
     }
   } catch (error) {
     console.error(error);
